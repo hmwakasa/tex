@@ -47,74 +47,132 @@
 			</ul><br>
 			<a href="https://twitter.com/share" class="twitter-share-button" data-via="CareleSmith9" data-lang="ja" target="_blank">ツイート</a>
 		</nav>
+		<p>
+			ここでは、TeX を自分の使っているパソコンにインストールするお話をします。
+			ちなみに、この記事を書いているのは、2020 年 4 月 10 日です。
+			この日に研究室の後輩の WSL の環境構築をする予定なので、この記事を書いています。
+			なお、2020 年 4 月 10 日は、TeX Live 2020 のリリース日ですが、
+			ここでは TeX Live 2019 をインストールします（理由は後述）。
+			また、インストールする OS は UNIX 系を想定しています。
+		</p>
 		<section>
+			<h2>TeX Live とはなにか</h2>
 			<p>
-				ここでは、TeX を自分の使っているパソコンにインストールするお話をします。
-				ちなみに、この記事を書いているのは、2020 年 4 月 10 日で、
-				この日に研究室の後輩の WSL の環境構築をする予定なので、この記事を書いています。
+				TeX とはなにか、TeX Live とはなにかという話については、
+				<a href="eptex/eptex-handout.pdf">最大限 TeX 入門</a>を見てください。
+			</p>
+		</section>
+		<section>
+			<h2>TeX Live 2019 をインストールする</h2>
+			<p>
+				現在、最新の TeX Live は、TeX Live 2020 ですが、
+				ここでは安定版としてリリースされていて、これ以上更新されることのない
+				TeX Live 2019 をインストールします。
+				最新のものを使うと、急な仕様変更によりバグが混入する恐れがあるので、
+				前年度の最終版を使うのが無難です。
 			</p>
 			<p>
-				なお、2020 年 4 月 10 日は、TeX Live 2020 のリリース日ですが、
-				ここでは TeX Live 2019 をインストールします。
-				また、インストールする OS は UNIX 系を想定しています。
+				なお、インストールの大きな流れ自体は、
+				<a href="https://texwiki.texjp.org/Linux" target="_blank">TeX Wiki の記事</a>
+				も参考になります。また、過去の TeX Live をインストールする話は、
+				<a href="https://qiita.com/munepi/items/44117be9180ac7a86d82" target="_blank">山本宗宏さんの記事</a>
+				も参考になります。
 			</p>
-			<section>
-				<h2>TeX Live とはなにか</h2>
-				<p>
-					TeX とはなにか、TeX Live とはなにかという話については、
-					<a href="eptex/eptex-handout.pdf">最大限 TeX 入門</a>を見てください。
-				</p>
-			</section>
-			<section>
-				<h2>TeX Live 2019 をインストールする</h2>
-				<p>
-					現在、最新の TeX Live は、TeX Live 2020 ですが、
-					ここでは安定版としてリリースされていて、これ以上更新されることのない
-					TeX Live 2019 をインストールします。
-				</p>
-				<p>
-					なお、インストールの大きな流れ自体は、
-					<a href="https://texwiki.texjp.org/Linux" target="_blank">TeX Wiki の記事</a>
-					も参考になります。また、過去の TeX Live をインストールする話は、
-					<a href="https://qiita.com/munepi/items/44117be9180ac7a86d82" target="_blank">山本宗宏さんの記事</a>
-					も参考になります。
-				</p>
-				<p>
-					まず、過去の TeX Live が集められている
-					<a href="ftp://tug.org/historic/systems/texlive/" target="_blank">TeX Live historic</a>
-					にアクセスします。そうすると、“2019” というディレクトリがあるので、
-					その中を見てみると install-tl-unx.tar.gz があります。
-					これがインストーラです。wget して、インストーラを起動する直前まで持っていきましょう。
-				</p>
-				<code class="block">
-					% wget ftp://tug.org/historic/systems/texlive/2019/install-tl-unx.tar.gz<br>
-					% tar xvf install-tl-unx.tar.gz<br>
-					% cd install-tl-*
-				</code>
-				<p>
-					これ以降は先に上げた山本宗宏さんの記事の受け売りです。
-					私自身はまだ試したことがありません……。
-				</p>
-				<p>
-					実際に、インストーラー install-tl を sudo 権限で実行します。
-					今回、TeX Live 2019 frozen の tlnet リポジトリとして、TeX Live historic に補完されている
-					ftp://tug.org/texlive/historic/2019/tlnet-final/ を利用しますので、
-					その場所を <code>-repository</code> オプションを用いて指定します。
-				</p>
-				<code class="block">
-					% sudo ./install-tl -repository ftp://tug.org/texlive/historic/2019/tlnet-final/
-				</code>
-				<p>
-					インストーラは Perl を利用しています。
-					Perl がシステムに入っていない場合にはエラーが発生するので、
-					エラーが発生した場合は <code>sudo apt install perl</code> などとして
-					Perl をインストールしてから再び試してみてください。
-				</p>
-				<p>
-					An old installation of TeX Live has been found... などと言われた場合は <code>n</code>
-					で拒否します。Enter command と言われたら <code>I</code> と入力してインストール開始です。
-				</p>
-			</section>
+			<p>
+				まず、過去の TeX Live が集められている
+				<a href="ftp://tug.org/historic/systems/texlive/" target="_blank">TeX Live historic</a>
+				にアクセスします。そうすると、“2019” というディレクトリがあるので、
+				その中を見てみると install-tl-unx.tar.gz があります。
+				これがインストーラです。wget して、インストーラを起動する直前まで持っていきましょう。
+			</p>
+			<code class="block">
+				% wget ftp://tug.org/historic/systems/texlive/2019/install-tl-unx.tar.gz<br>
+				% tar xvf install-tl-unx.tar.gz<br>
+				% cd install-tl-*
+			</code>
+			<p>
+				これ以降は先に上げた山本宗宏さんの記事の受け売りです。
+				私自身はまだ試したことがありません……。
+			</p>
+			<p>
+				実際に、インストーラー install-tl を sudo 権限で実行します。
+				今回、TeX Live 2019 frozen の tlnet リポジトリとして、TeX Live historic に補完されている
+				<span class="url">ftp://tug.org/texlive/historic/2019/tlnet-final/</span> を利用しますので、
+				その場所を <code>-repository</code> オプションを用いて指定します。
+			</p>
+			<code class="block">
+				% sudo ./install-tl -repository ftp://tug.org/texlive/historic/2019/tlnet-final/
+			</code>
+			<p>
+				インストーラは Perl を利用しています。
+				Perl がシステムに入っていない場合にはエラーが発生するので、
+				エラーが発生した場合は <code>sudo apt install perl</code> などとして
+				Perl をインストールしてから再び試してみてください。
+				もし、インストールに膨大な時間がかかるならば、
+				<code>ftp://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2019/tlnet-final</code>
+				をリポジトリに指定してください。ダウンロードにかかる時間が短くなるはずです。
+			</p>
+			<p>
+				An old installation of TeX Live has been found... などと言われた場合は <code>n</code>
+				で拒否します。Enter command と言われたら <code>I</code> と入力してインストール開始です。
+			</p>
+			<p>
+				インストールが終了したら、シェルが TeX の場所を見つけることができるように、
+				パスを通します。以下はパスの通しかたの一例です。
+			</p>
+			<code class="block">
+				echo 'export PATH=$PATH:/usr/local/texlive/2019/bin/*/' &gt;&gt; ~/.bashrc<br>
+				source ~/.bashrc
+			</code>
+		</section>
+		<section>
+			<h2>最新の TeX Live をインストールする</h2>
+			<p>
+				最新の TeX Live を入手する方法は、
+				<a href="https://texwiki.texjp.org/?Linux" target="_blank">TeX Wiki</a>
+				に詳しくまとめてあります。そちらを参考にしてください。
+			</p>
+			<p>
+				具体的には、最新のインストラーをダウンロードして、最新のリポジトリを指定します。
+			</p>
+			<code class="block">
+				% wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz<br>
+				% tar xvf install-tl-unx.tar.gz<br>
+				% cd install-tl*<br>
+				% sudo ./install-tl -no-gui -repository http://mirror.ctan.org/systems/texlive/tlnet/
+			</code>
+			<p>
+				最後にパスを通してインストール完了です。
+			</p>
+			<p>
+				最新の TeX Live をインストールした場合、適宜 TeX Live をアップデートしなければなりません。
+				TeX Live のアップデートなど、TeX Live 全体の運用を管理するコマンドは、
+				<code>tlmgr</code> コマンドです。TeX Live をアップデートするために、
+				定期的に次のコマンドを走らせましょう。<code>update</code> がアップデートをするコマンドで、
+				<code>--self</code> が <code>tlmgr</code> 自身を更新するオプション、
+				<code>--all</code> は更新可能なパッケージを全て更新するオプションです。
+			</p>
+			<code class="block">
+				% sudo tlmgr update --self --all
+			</code>
+		</section>
+		<section>
+			<h2>パッケージ管理ツールを用いたインストール</h2>
+			<p>
+				Linux ディストリビューションに含まれている TeX Live をインストールすることもできます。
+				ただし、この方法でインストールすると、（先程も述べたとおり）仕様変更によるバグが混入したり、
+				TeX Live の更新と Linux ディストリビューションの更新とのタイムラグがあるなどで、
+				思わぬ不具合の原因になるかもしれません。個人的には、この方法は勧めません。
+				ただし、システムのパッケージ管理と一元化できるというメリットもあります。
+			</p>
+			<p>
+				TeX Live は、いくつかのパッケージに別れて収録されていますが、
+				パッケージが足りずにエラーが発生することを避けるために、
+				フルインストールするのが良いでしょう。
+			</p>
+			<code class="block">
+				% sudo apt install texlive-full
+			</code>
 		</section>
 	</section>
 	<script src="/jscss/ad.js" type="text/java2019script"></script>
