@@ -1,0 +1,261 @@
+%! LuaLaTeX 文書
+\documentclass[unicode,12pt,colorlinks,]{beamer}
+\usetheme{hmnotebook} % https://github.com/kmaed/kmbeamer
+\usefonttheme{professionalfonts}
+
+\hypersetup{linkcolor=,urlcolor=teal}
+
+\usepackage{luatexja}
+\ltjsetparameter{jacharrange={-2,-3,-8}}
+\usepackage[no-math,match,deluxe]{luatexja-preset}
+
+\usepackage{textcomp}
+\usepackage{luatexja-otf}
+
+\usepackage{graphicx,xcolor}
+\usepackage{pxrubrica}
+\usepackage{tcolorbox}
+\usepackage{bxwareki}
+\usepackage{indentfirst}
+\usepackage{hmtrump}
+
+\usepackage{listings}
+\lstset{
+	doubleletterspace,
+	basicstyle={\small\ttfamily},
+	backgroundcolor={\color[gray]{.9}},
+	commentstyle={\color[gray]{.5}},
+	numbers=left,
+	numberstyle=\tiny,
+}
+
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+
+\usepackage{scsnowman} %☃
+\usepackage{bxokumacro}
+\usepackage{keystroke}
+\usepackage{bxrawstr} % https://zrbabbler.hatenablog.com/entry/20181222/1545495849
+\usepackage[twemoji-pdf]{bxcoloremoji} % https://github.com/zr-tex8r/BXcoloremoji
+
+\usepackage{mflogo}
+
+\usepackage{bxtexlogo}
+\bxtexlogoimport{*,**}
+
+\usepackage[T1]{fontenc}
+\usepackage{mathtools,amssymb,mathrsfs,mathabx}
+\usepackage[math]{iwona}
+\usepackage[euler-digits]{eulervm}
+\allowdisplaybreaks[4]
+
+%%%%%%%%%% 商用フォントを用いているので、自分でタイプセットする場合は適当に以下を変えてください
+\setmainfont[
+	Ligatures=TeX,
+	BoldFont=FOT-KafuMarkerStd-B,
+	ItalicFont=FOT-KafuMarkerStd-B,
+]{FOT-KafuPenjiStd-M}
+\setsansfont[
+	Ligatures=TeX,
+	BoldFont=FOT-KafuMarkerStd-B,
+	ItalicFont=FOT-KafuMarkerStd-B,
+]{FOT-KafuPenjiStd-M}
+\setmainjfont[
+	Ligatures=TeX,
+	CharacterWidth=Proportional,
+	JFM=prop,
+	BoldFont=FOT-KafuMarkerStd-B,
+	ItalicFont=FOT-KafuMarkerStd-B,
+]{FOT-KafuPenjiStd-M}
+\setsansjfont[
+	Ligatures=TeX,
+	CharacterWidth=Proportional,
+	JFM=prop,
+	BoldFont=FOT-KafuMarkerStd-B,
+	ItalicFont=FOT-KafuMarkerStd-B,
+]{FOT-KafuPenjiStd-M}
+\setmonofont[
+	Ligatures=TeX,
+	Scale=0.89,
+]{DejaVu Sans Mono}
+\setmonojfont[
+	Ligatures=TeX,
+	Scale=0.89,
+]{NotoSansMonoCJKjp-Regular}
+
+\newfontfamily\errorfont[
+	Ligatures=TeX,
+]{TsukuQMinLStd-L}
+
+\newfontfamily\nishikifonta[
+	Ligatures=TeX,
+]{Nishiki-teki}
+\newjfontfamily\nishikifontj[
+	Ligatures=TeX,
+]{Nishiki-teki}
+\newcommand{\nishikifont}{\nishikifonta\nishikifontj}
+
+%%%%%%%%%% 以下は自前コマンド
+
+\newcommand{\centeralign}[1]{\rule{0pt}{0pt}\hfill#1\hfill\rule{0pt}{0pt}}
+\newcommand{\typecommand}[1]{\colorbox{darkgray}{{\ttfamily\color{lime}#1}}}
+
+\setlength{\parskip}{2ex}
+
+\title{電脳スタイルを作り変えている話}
+\subtitle{Dennou6.sty から dennou777.cls へ}
+\author{北海道大学理学部 ひとみさん（人見祥磨）}
+\date{\warekitoday}
+
+\begin{document}
+
+\begin{frame}
+	\maketitle
+	
+	\centeralign{{\footnotesize 発表資料: \url{http://www.circle9.work/tex/bunkakai/}}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{自己紹介}
+	\begin{itemize}
+		\item 北海道大学 GFD 研究室 B4
+		\item CTAN にパッケージをひとつ上げている
+			\begin{itemize}
+				\item \texttt{hmtrump} パッケージ
+				\item \url{https://www.ctan.org/pkg/hmtrump}
+				\item トランプのカードを表現するためのパッケージ \trump AS
+				\item \TeX\ Live に入ってます
+			\end{itemize}
+		\item epNetFan で \TeX 入門を講演
+			\begin{itemize}
+				\item \url{http://www.circle9.work/tex/eptex/}
+			\end{itemize}
+		\item \TeX 自体は 4 年前から使っている
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{やってること}
+	電脳スタイル \texttt{dennou6.sty} の改修
+
+	\begin{itemize}
+		\item バグの原因を修正
+		\item 非推奨なコマンドの除去
+		\item ニュー・スタンダードを取り入れる
+	\end{itemize}
+
+	中身がかなり書き換わる→新しく開発
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+		{\LARGE\aruby{\texttt{dennou777.cls}}{電脳スリーセブン}}
+
+		\url{https://github.com/Hitomi-San/dennou777}
+
+		最新バージョン: 2019-09-03 version 7.0.6 (Nicole)
+
+		\vspace{5ex}
+		ぜひ皆さんも利用して、issue など投げてください
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{動機}
+	\begin{block}{どうして開発しようと思ったのか}
+		\begin{itemize}
+			\item \texttt{dennou6.sty} の最終更新が 2001 年
+				\begin{itemize}
+				\item 2001 年から、今までにあった \TeX の出来事
+					\begin{itemize}
+						\item \pTeX が \TeX\ Live に収録された
+						\item 日本語 \TeX 開発コミュニティの登場
+						\item \LuaTeX など、新しいドライバの登場
+					\end{itemize}
+				\end{itemize}
+			\item 非推奨なコマンドが多用されている（i.e.\ \verb|\bf|）
+		\end{itemize}
+
+		\texttt{dennou6.sty} が時代に追いついていない\\
+		（逆に古すぎて有害）
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{動機}
+	\begin{block}{どうしてクラスファイル (\texttt{*.cls}) として開発するのか}
+		\begin{itemize}
+			\item 電脳スタイルの性格上、クラスファイルが最適と判断
+				\begin{itemize}
+					\item \texttt{D6style.sty} 相当の機能
+					\item ページスタイルの定義
+					\item 見出しの定義
+				\end{itemize}
+			\item \texttt{jﾅﾝﾄｶ.cls} と \texttt{Dennou6.sty} の組み合わせを排除したい
+				\begin{itemize}
+					\item \texttt{jﾅﾝﾄｶ.cls} は非推奨
+					\item \texttt{jsﾅﾝﾄｶ.cls} のほうが良い
+					\item \texttt{jlreq.cls} など新しいものも登場
+				\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{開発の方針}
+	\begin{itemize}
+		\item Version 6 と同様な機能を提供する
+			\begin{itemize}
+				\item 完全に再現することは保証しない
+			\end{itemize}
+		\item 非推奨な記述は改める
+		\item \emph{\pLaTeX + dvipdfmx 以外の方法もサポートする}
+			\begin{itemize}
+				\item \upLaTeX + dvipdfmx や \LuaLaTeX-ja など
+				\item \XeLaTeX は日本語するための土台が不十分なので対象外
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{開発の方針}
+	\begin{block}{jlreq をベースにする}
+		\begin{itemize}
+			\item \texttt{jlreq} は \pLaTeX, \upLaTeX, \LuaLaTeX に対応
+			\item 版面構成のオプションが多い
+			\item \verb|\LoadClassWithOptions{jlreq}|
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{D6style の機能は jlreq で実装}
+		\begin{itemize}
+			\item \verb|\NewPageStyle| の利用
+			\item ヘッダーとフッターの罫線を出力するオプションがない
+				\begin{itemize}
+					\item \texttt{fancyhdr} の利用を試みたが……
+					\item \verb|\NewPageStyle| したものが上書きされる
+					\item とりあえず罫線は諦める
+				\end{itemize}
+			\item ヘッダーとフッターの書式は再現できた（はず）
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{開発の現況}
+	\begin{itemize}
+		\item D6style 相当の機能は提供できている
+		\item バグがいくつか残ってる（ドキュメントに記載）
+		\item 未実装の機能は dennou6 のファイルを直接利用している
+			\begin{itemize}
+				\item \verb|\let\bf\bfseries| とかして誤魔化してる
+				\item つぎは D6math に手を付けたい
+			\end{itemize}
+		\item jlreq の不具合・仕様変更が直撃するのをどうにかしたい
+			\begin{itemize}
+				\item \texttt{description} 環境の左余白とか
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+\end{document}

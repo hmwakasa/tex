@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+	<meta name="author" content="CareleSmithひとみ">
+	<title>TeX is aRe</title>
+	<link rel="stylesheet" type="text/css" href="/jscss/taikai.css"><!-- css -->
+	<script src="/jscss/jquery-latest.min.js" type="text/javascript"></script><!-- jQuery -->
+	<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML,/jscss/mathjax.js"></script><!-- Mathjax -->
+	<script src="/jscss/jquery.tablesorter.min.js" type="text/javascript"></script><!-- tabelesorter -->
+	<script src="/jscss/jquery.metadata.js" type="text/javascript"></script><!-- tabelesorter -->
+	<script src="/jscss/twitter.js" type="text/javascript"></script><!-- twitter リンク用 -->
+	<script src="/jscss/analytics.js" type="text/javascript"></script><!-- Google Analytics-->
+	<!-- favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<div class="wrapper">
+	</section>
+		<header>
+			<h1>TeX is aRe</h1>
+			<div class="update">
+				CareleSmithひとみ<br>
+				<del><time>2018-07-24</time>作成</del>
+				<del><time>2018-07-27</time>更新</del>
+				<del><time>2019-07-05</time>更新</del>
+				<del><time>2020-04-10</time>更新</del>
+				<ins><time>2020-04-24</time>更新</ins>
+			</div>
+		</header>
+		<nav class="head">
+			<ul itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+				<li><a href="/" itemprop="url"><span itemprop="title">TOP</span></a></li>
+				<li><a href="/mics/" itemprop="url"><span itemprop="title">その他</span></a></li>
+				<li><span itemprop="title">TeX is aRe</span></li>
+			</ul><br>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="CareleSmith9" data-lang="ja" target="_blank">ツイート</a>
+		</nav>
+		<section>
+			<h2>これは何のサイトなのか</h2>
+			<p>
+				管理人のひとみさんが TeX について書き連ねるだけです。
+			</p>
+			<p>
+				なんでこんなものを書こうと思ったのかといえば、
+				TeX についての資料はネット上に多くあるものの、
+				最終更新が 2012 年だったり、実態がわからないサイトだったりしています。
+				そういう状況に辟易したので、自分で情報を提供するサイトを
+				作ろうと思った次第です。
+			</p>
+		</section>
+		<section>
+			<h2>はじめに</h2>
+			<section>
+				<h3>扱う範囲</h3>
+				<p>
+					とりあえず私の知っている範囲のことは何でも書くつもりですが、
+					主に、pLaTeX、upLaTeX、LuaLaTeX-ja がメインになります。
+				</p>
+				<p>
+					TeX on LaTeX の話はするかもしれませんが、plain TeX の話は
+					あまりしないと思います。
+				</p>
+				<p>
+					私は Mac ユーザーなので、基本的に Mac での話をします。
+					しかし、TeX は環境に依存しないような作りになっているので、
+					ここに書いてあることは、そのまま Windows でも使えるはずです。
+				</p>
+			</section>
+			<section>
+				<h3>参考文献</h3>
+				<p>
+					マトモに TeX をやろうとしている人は、
+					奥村晴彦先生の『LaTeX2e 美文書作成入門』を読みましょう。
+				</p>
+				<p>
+					日本語で書かれている LaTeX の本で、定期的に内容が見直されている、
+					up-to-date な本は（私の知っている限り）この 1 冊ぐらいしかないです。
+					3 年毎に内容が見直され、新しい版として
+					出版されるので、旧版を持っている人でも最新版を買って常に手元に
+					置いておくと良いでしょう。
+				</p>
+			</section>
+		</section>
+		<section>
+			<h2>発表資料</h2>
+			<p>
+				以下の発表資料では、TeX ソースも公開しますが、タイプセットには
+				LuaLaTeX を用いてください。商用フォントや、
+				TeX Live に含まれないパッケージを多用しているので、適宜中身を書き換えたり、
+				必要なパッケージをインストールしたりしてください。
+			</p>
+			<section>
+				<h3 id="eptex">最大限 TeX 入門</h3>
+				<p>
+					以下は、2019 年 7 月 5 日に、北海道大学理学部で TeX について発表したときの発表資料です。
+					TeX ユーザーに必要な知識で、美文書で詳しく触れられていない話が中心です。
+				</p>
+				<ul>
+					<li><a href="eptex/eptex-handout.pdf">PDF ファイル</a></li>
+					<li><a href="eptex/">リソース</a></li>
+				</ul>
+			</section>
+			<section>
+				<h3>電脳スタイルを作り変えている話</h3>
+				<p>
+					以下は、2019 年 9 月 4 日に、GFD セミナーで行う発表の、発表資料です。
+					研究室のスタイルファイルを、クラスファイルとして作り直しているお話です。
+				</p>
+				<ul>
+					<li><a href="bunkakai/slide.pdf">PDF ファイル</a></li>
+					<li><a href="bunkakai/">リソース</a></li>
+				</ul>
+			</section>
+		</section>
+		<section>
+			<h2 id="index">目次</h2>
+			<section>
+				<h3 id="what">TeX とはなにか</h3>
+				<dl>
+					<dt><a href="nanitex.html">TeX とはなにか、TeX を使うべきかどうか</a></dt>
+					<dd>
+						<p>
+							TeX とはアレで⛄で🍣です。
+						</p>
+						<p>
+							TeX とは組版の処理系で、それを実現するプログラミング言語のことです。
+							TeX はそれなりの学習コストがかかりますが、それに見合った
+							美しい文書を作成することができます。
+							（<time>2018-07-24</time> 作成）
+						</p>
+						<p>
+							ただし、このページを読むよりは、先に上げた
+							<a href="#eptex">最大限 TeX 入門</a>を読むほうがいいです。
+						</p>
+					</dd>
+					<dt><a href="install.html">TeX のインストール</a></dt>
+					<dd>
+						<p>
+							一応、インストールのしかたの記事を書きましたが、
+							この話は、使っているマシンによって大きく話が変わってくるので
+							他の文献を参考にしていただきたいです。
+						</p>
+						<p>
+							<a href="https://texwiki.texjp.org/?TeX入手法" target="_blank">TeX Wiki の当該ページ</a>
+							が参考になります。
+						</p>
+						<p>
+							Mac では MacTeX を使うのが簡単ですが、Homebrew などとの相性はよくないので、
+							その点を注意してください。私はハマりました。
+							MacTeX が Ghostscript をインストールして、Homebrew も
+							Ghostscript をインストールしようとしたのが原因ぽかったです。
+							私は Homebrew をインストールし直すことで解決しました。
+						</p>
+					</dd>
+					<dt><a href="package-install.html">パッケージのインストール</a></dt>
+					<dd>
+						<p>
+							LaTeX の機能を拡充させたり、新たな機能を追加するのが「パッケージ」です。
+							<code>\usepackage</code> でパッケージを読み込みますが、
+							それで読み込むパッケージはどこに配置するのでしょうか。
+						</p>
+						<p>
+							このページに加えて、TeX Wiki の、TeX のディレクトリ構成に関する
+							<a href="https://texwiki.texjp.org/?TeXTeX のディレクトリ構成" target="_blank">ページ</a>
+							や、Kpathsea に関する
+							<a href="https://texwiki.texjp.org/?texmf.cnf ファイル" target="_blank">ページ</a>
+							も参考にしてください。(<time>2020-04-24</time> 更新）
+						</p>
+					</dd>
+					<dt><!-- a href="iroiro.html" -->TeX の仲間たち<!-- /a --></dt>
+					<dd>
+						<p>
+							オリジナルの TeX は、1979 年という相当昔に生まれました。
+							そのオリジナルの TeX を改造したものが今では使われています。
+						</p>
+						<p>
+							参考: <a href="https://qiita.com/yyu/items/6404656f822ce14db935" target="_blank">TeX処理系御伽噺</a>
+						</p>
+					</dd>
+					<dt><!-- a href="workflow.html" -->TeX のワークフロー<!-- /a --></dt>
+					<dd>
+						<p>
+							TeX で文書を作るときは、TeX ソース→dvi ファイル→PDF という
+							ワークフローになります。
+						</p>
+						<p>
+							新しい TeX は、dvi を介さずに直接 PDF を生成することもあります。
+						</p>
+					</dd>
+				</dl>
+			</section>
+			<section>
+				<h3 id="luatex">LuaTeX を使ってみよう</h3>
+				<p>
+					TeX を使いつつ、自由にフォントを変えるためには LuaTeX が楽です。
+					LuaTeX に関する日本語の説明が少ないので、ここの項目は力を入れたい……。
+					ちなみに私は Lua はできません
+				</p>
+				<dl>
+					<dt>LuaTeX-ja 事始め</dt>
+					<dd>
+						<p>
+							(u)p(La)TeX 用のソースの、プリアンブルを少し書き換えるだけで、
+							Lua(La)TeX でコンパイルできる文書が作れます。
+						</p>
+						<p>
+							プリアンブルを書き換えて、pLaTeX 用文書を LuaTeX-ja 用の文書を
+							作成する方法は、ZR さんの記事が参考になります。
+							（<time>2018-11-10</time>更新）
+						</p>
+						<p>
+							<a href="https://qiita.com/zr_tex8r/items/ac9176e4611bf233a3e0" target="_blank">Qiita:「pLaTeX から LuaLaTeX への移行」に関するクイズ</a>
+						</p>
+					</dd>
+				</dl>
+			</section>
+			<section>
+				<h3 id="cmd">コマンド、パッケージ集</h3>
+				<p>
+					これ、作る必要あるのかなぁ。
+					一応目次だけは作っておきますが、あまりモチベーションがないのでしばらくは目次だけです。
+				</p>
+				</p>
+				<section>
+					<h4 id="latex-cmd">LaTeX、(u)pLaTeX のコマンド</h4>
+					<p>
+						日本人が LaTeX だと思って使っているのはだいたい (u)pLaTeX なので、
+						まとめておきます。
+					</p>
+					<section>
+						<h5 id="latex-cmd-pre">jsarticle や生の LaTeX にあるコマンド</h5>
+					</section>
+					<section>
+						<h5 id="latex-cmd-math">数式のコマンド</h5>
+						<p>
+							AMS-math 関連も含みます。
+						</p>
+						<dl>
+							<dt><!-- a href="declare-math-alphabet.html" -->数式フォントの変え方（パッケージを使わない方法）<!-- /a --></dt>
+							<dd>
+								<p>
+									<code>\DeclareMathAlphabet{\mathtt}{T1}{fvm}{m}{n}</code>
+									のようにプリアンブルに書くことで、数式のフォントを変更できます。
+									（<time>2018-10-17</time> 作成）
+								</p>
+								<p>
+									参考: <a href="http://d.hatena.ne.jp/zrbabbler/20160604/1465051124" target="_blank">マクロツイーター「チョット数式フォントしてみる話(1)」</a>
+								</p>
+							</dd>
+						</dl>
+					</section>
+					<section>
+						<h5 id="latex-sty">(u)(p)LaTeX 用のパッケージ</h5>
+						<p>
+							よく使われているパッケージや、便利なパッケージを紹介します。
+						</p>
+					</section>
+				</section>
+				<section>
+					<h4 id="luatex-sty">Lua(La)TeX のコマンド、パッケージ</h4>
+					<p>
+						基本的に pLaTeX のコマンドが使えます。
+					</p>
+					<section>
+						<h5 id="no-luatex-sty">LuaTeX で使えない pTeX のコマンド、パッケージ</h5>
+						<p>
+							otf パッケージが有名ですが、その他にも (u)pTeX を要求しているので
+							LuaTeX で使えないパッケージがあります。
+						</p>
+						<dl>
+							<dt>otf パッケージ</dt>
+							<dd>
+								<p>
+									otf パッケージは (u)pLaTeX を要求しているので、LuaTeX では動きません。
+									otf パッケージの代替として、luatexja-otf パッケージが使えます。
+								</p>
+							</dd>
+							<dt><a href="lltjp-listings.html">plistings パッケージ及び jlistingsパッケージ</a></dt>
+							<dd>
+								<p>
+									LuaTeX-ja パッケージでは、LuaTeX-ja と listings が読み込まれたときに、
+									listings に対するパッチである lltjp-listings を自動的に読み込むので、
+									もはや plistings や jlistings は不要です。
+									（<time>2018-07-27</time> 作成）
+								</p>
+								<p>
+									参考: <a href="http://git.sourceforge.jp/view?p=luatex-ja/luatexja.git;a=blob_plain;f=doc/luatexja-ja.pdf;hb=HEAD" target="_blank">LuaTeX-ja パッケージマニュアル</a>
+								</p>
+							</dd>
+							<dt><a href="hyperref-luatex.html">pxjahyper パッケージ</a></dt>
+							<dd>
+								<p>
+									pxjahyper パッケージは、(u)pLaTe + hyperref + dvipdfmx を前提としているので、
+									LuaTeXでは動作しません。
+									<code>\usepackage[pdfencoding=auto]{hyperref}</code> とします。
+									（<time>2018-07-29</time>作成）
+								</p>
+							</dd>
+						</dl>
+					</section>
+				</section>
+			</section>
+			<section>
+				<h3>エラーや警告に遭遇したら</h3>
+			</section>
+			<section>
+				<h3>TeX 言語の話</h3>
+				<p>
+					🍣
+				</p>
+			</section>
+		</section>
+	</section>
+	<script src="/jscss/ad.js" type="text/javascript"></script>
+	<nav class="foot">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="CareleSmith9" data-lang="ja" target="_blank">ツイート</a>
+		<a href="/" class="top">トップへ</a>
+	</nav>
+</div>
+</body>

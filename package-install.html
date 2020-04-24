@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+	<meta name="author" content="CareleSmithひとみ">
+	<title>パッケージのインストール</title>
+	<link rel="stylesheet" type="text/css" href="/jscss/taikai.css"><!-- css -->
+	<script src="/jscss/jquery-latest.min.js" type="text/javascript"></script><!-- jQuery -->
+	<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML,/jscss/mathjax.js"></script><!-- Mathjax -->
+	<script src="/jscss/jquery.tablesorter.min.js" type="text/javascript"></script><!-- tabelesorter -->
+	<script src="/jscss/jquery.metadata.js" type="text/javascript"></script><!-- tabelesorter -->
+	<script src="/jscss/twitter.js" type="text/javascript"></script><!-- twitter リンク用 -->
+	<script src="/jscss/analytics.js" type="text/javascript"></script><!-- Google Analytics-->
+	<!-- twitter card -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@CareleSmith9">
+	<meta property="og:url" content="http://www.circle9.work/tex/package-install.html">
+	<meta property="og:title" content="パッケージのインストール">
+	<meta property="og:description" content="パッケージのインストール" />
+	<meta property="og:image" content="http://www.circle9.work/favicon.png" />
+	<!-- favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<div class="wrapper">
+	<section>
+		<header>
+			<h1>パッケージのインストール</h1>
+			<div class="update">
+				CareleSmithひとみ<br>
+				<time>2020-04-23</time>作成
+			</div>
+		</header>
+		<nav class="head">
+			<ul itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+				<li><a href="/" itemprop="url"><span itemprop="title">TOP</span></a></li>
+				<li><a href="/tex/" itemprop="url"><span itemprop="title">TeX is aRe</span></a></li>
+				<li><a href="/tex/#index" itemprop="url"><span itemprop="title">目次</span></a></li>
+				<li><a href="/tex/#what" itemprop="url"><span itemprop="title">TeX とはなにか</span></a></li>
+				<li><span itemprop="title">パッケージのインストール</span></li>
+			</ul><br>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="CareleSmith9" data-lang="ja" target="_blank">ツイート</a>
+		</nav>
+		<p>
+			LaTeX の機能を拡充させたり、新たな機能を追加するのがパッケージです。
+			LaTeX 文書のプリアンブルで <code>\usepackage{&lt;package&gt;}</code>
+			とすることで、外部のパッケージを読み込み、LaTeX の機能を拡充させることができます。
+		</p>
+		<p>
+			ここでは、実際にパッケージを読み込む話には深く触れず、
+			パッケージを利用する下準備として、パッケージをインストールする方法を紹介します。
+		</p>
+		<section>
+			<h2>TeX のディレクトリ構成</h2>
+			<p>
+				例えば、graphicx パッケージを利用したくて、<code>\usepackage{graphicx}</code>
+				と記述したとします。
+				この LaTeX 文書をタイプセットすると、LaTeX は<code>\usepackage{graphicx}</code>
+				の記述を見つけて、システムから graphicx.sty というファイルを探して、それを読み込みます。
+			</p>
+			<p>
+				このとき、graphicx.sty というファイルをシステム全体から探すと、
+				膨大な時間がかかってしまううえに、TeX とは関係のないファイルまで検索されてしまうので、
+				都合が悪いです。ということで、TeX では一定の規則に従って、
+				関連するファイルを配置することにしています。これを TDS (TeX Directory Structure) といいます。
+				すなわち、graphicx.sty は TDS の構成に従った場所に配置されており、
+				LaTeX は TDS の構成に基づいて graphicx.sty を検索するのです。
+				逆に言えば、自分の手で新しくパッケージを導入する場合、
+				TDS の構成に基づいて新しいパッケージを配置しなければ、
+				TeX はそれを見つけることができないということです。
+			</p>
+			<section>
+				<h3>TEXMF ツリー</h3>
+				<p>
+					では、実際に TeX ではどのようなディレクトリ構成をとっているかというと、
+					<strong>多重 TEXMF ツリー</strong>という形式をとっています。
+					一定の規則に従ってファイルを配置した、<strong>TEXMF ツリー</strong>を複数用意し、
+					それを使い分けるという運用方法です。
+				</p>
+				<p>
+					ひとつの TEXMF ツリーではなく、複数の TEXMF ツリーを利用することで、
+					ディストリビューションが用意したファイル群と、
+					マシンのユーザーが用意したファイル群を明確に分離することができます。
+					それによって、システムをアップデートしたときに、
+					ユーザーが用意したファイル群が上書きされることを防ぐことができます。
+				</p>
+				<p>
+					多重 TEXMF ツリーという通り、TEXMF ツリーには 7 つほどありますが、
+					<small>（詳しくは TeX Wiki の当該ページ</a>参照）</small>
+					実際に重要なのは <strong>TEXMFDIST</strong> と、<strong>TEXMFLOCAL</strong>
+					の 2 つです。それぞれ、ディストリビューションによって構成されたものと、
+					ユーザーが各自のマシンに各々用意するものとなります。
+					それぞれの TEXMF ツリーがどこに存在するかは、<code>kpsewhich</code>
+					コマンドで確認することができます。
+				</p>
+				<code class="block">
+					% kpsewhich -var-value TEXMFLOCAL<br>
+					/usr/local/texlive/texmf-local<br>
+					% kpsewhich -var-value TEXMFDIST<br>
+					/usr/local/texlive/2020/texmf-dist
+				</code>
+				<p>
+					ということで、TEXMFDIST は <code>/usr/local/texlive/2020/texmf-dist</code>、
+					TEXMFLOCAL は <code>/usr/local/texlive/texmf-local/</code> であることがわかりました。
+					上に例示したのは、自分の環境 (macOS) で実行した結果のコピペですが、
+					他の UNIX な OS でも、デフォルトではほとんど同じ結果になると思います。
+					先程も述べたとおり、ユーザーが自分で用意するものは、TEXMFLOCAL
+					に入れることになっているので、<code>/usr/local/texlive/texmf-local/</code>
+					に自前のものを格納します。
+				</p>
+			</section>
+			<section>
+				<h3>TEXMF ツリーの構造</h3>
+				<p>
+					自前のものを格納する場所を把握しても、その中身がどのような構造になっているかを知らないと、
+					適切に格納することができません。ということで、
+					TEXMF ツリーの内部がどのようになっているかのお話に移ります。
+				</p>
+				<p>
+					実際に、どのようなディレクトリ構造になっているかを知るために、
+					TEXMFLOCAL がどのようになっているかを <code>tree</code> コマンドで確認してみます。
+					なお、以下の例は、ある程度カスタマイズを進めた私の環境での例なので、
+					どのような環境も以下のようになるわけではないことに気をつけてください。
+				</p>
+				<code class="block">
+					% tree -d -L 2 /usr/local/texlive/texmf-local<br>
+					/usr/local/texlive/texmf-local<br>
+					├── bibtex<br>
+					│   ├── bib<br>
+					│   └── bst<br>
+					├── doc<br>
+					│   ├── fonts<br>
+					│   ├── latex<br>
+					│   └── lualatex<br>
+					├── dvips<br>
+					│   └── local<br>
+					├── fonts<br>
+					│   ├── afm<br>
+					│   ├── enc<br>
+					│   ├── fonts<br>
+					│   ├── map<br>
+					│   ├── opentype<br>
+					│   ├── pfm<br>
+					│   ├── source<br>
+					│   ├── tfm<br>
+					│   ├── truetype<br>
+					│   ├── type1<br>
+					│   └── vf<br>
+					├── metapost<br>
+					│   └── local<br>
+					├── source<br>
+					│   └── latex<br>
+					├── tex<br>
+					│   ├── latex<br>
+					│   ├── lualatex<br>
+					│   └── plain<br>
+					├── texdoc<br>
+					├── tlpkg<br>
+					└── web2c<br>
+					<br>
+					32 directories
+				</code>
+				<p>
+					こうしてみると、どのディレクトリに何を配置するべきか、
+					ディレクトリ名である程度類推できるようになっています。
+					この中で、特に重要なのは、<code>tex</code> と <code>doc</code>、
+					<code>source</code> の 3 つのディレクトリです。
+					フォントをインストールするとなると、<code>fonts</code> も重要ですが、
+					TeX システムに新しくフォントをインストールする人は多くはないでしょう。
+				</p>
+				<p>
+					なお、TEXMF ツリーからファイルを検索するときに、
+					ファイル名やファイルの拡張子によって、検索するディレクトリを決め打つので、
+					ファイルを配置するときは、正しいディレクトリに配置しなければ、
+					正しく検索されません。注意しましょう。
+				</p>
+				<section>
+					<h4>Kpathsea と ls-R ファイル</h4>
+					<p>
+						先程、<code>kpsewhich</code> というコマンドが出てきましたが、
+						それは、Kpathsea ライブラリに含まれており、
+						TeX が TEXMF ツリーから必要なファイルを探し出す役割を担っています。
+						大昔の TeX では、ファイルの検索に必要なパスの設定などを、
+						OS の環境変数で行っていました。しかし、TeX 関連のソフトウェアの数や、
+						設定項目の件数が増えたことなどから、「TeX 環境版の環境変数」
+						を管理するために、Kpathsea が開発されました。
+						また、今述べたとおり、Kpathsea は TeX の環境変数の管理のみならず、
+						TeX 関連のファイル検索をする役割も担っています。
+					</p>
+					<p>
+						さて、Kpathsea がファイル検索をする役割を持つことは述べたとおりですが、
+						ファイルを検索するに際して、膨大な量のファイルを検索するのには時間がかかります。
+						そこで、予めファイルの一覧を作成して、その一覧からファイルを検索するという手法を取ります。
+						このファイルの一覧は ls-R というファイル名で作成されます。このファイル名は、
+						<code>ls -R &lt; ls-R</code> というコマンドでファイル一覧を作成していたことに由来します。
+					</p>
+					<small>
+						<p>
+							ls-R を利用するのは、ls-R を利用すると設定したパスだけです。
+							具体的には、全ての TEXMF ツリーを表示する
+							<code>kpsewhich -var-value TEXMF</code> を実行したときに、
+							<code>!!</code> が前置されているパスだけです。
+							通常は、TEXMFLOCAL は ls-R を利用する設定になっています。
+							最近のコンピューターは十分高速なので、ls-R を利用しない設定にする人もいるようです。
+						</p>
+					</small>
+					<p>
+						ls-R ファイルを作成するには、<code>mktexlsr</code> コマンドを用います。
+						通常は TEXMFLOCAL に書き込むには管理者権限が必要になるので、
+						必要に応じて、<code>sudo</code> で管理者権限で実行します。
+						また、TEXMF ツリーに変更を加えた場合も、その変更を ls-R に反映させるため、
+						<code>mktexlsr</code> を実行する必要があります。
+					</p>
+				</section>
+			</section>
+		</section>
+		<section>
+			<h2>パッケージをインストールする</h2>
+			<p>
+				では、実際にパッケージをインストールしてみましょう。
+			</p>
+			<p>
+				例として、
+				<a href="http://www.gfd-dennou.org/library/cc-env/TeXmacro/dennou/" target="_blank">地球流体電脳倶楽部 TeX スタイルファイル</a>
+				(Dennou Style) を挙げます。まず、ファイルを取得して必要なファイルを生成します。
+				アーカイブに含まれている *.doc や、*.ins は、動作に必要な *.sty や、
+				ドキュメントを生成するのに必要なファイルです。
+				中間生成物は不要なので削除します。
+			</p>
+			<code class="block">
+				% wget http://www.gfd-dennou.org/library/cc-env/TeXmacro/dennou/dennou-sty-6-current.tar.gz<br>
+				% cd dennou_sty<br>
+				% make<br>
+				% make doc<br>
+				% make doc-dev<br>
+				% ls *.dvi | xargs -L 1 dvipdfmx<br>
+				% rm *.drv *.idx *.log *.dvi *.toc *.ilg *.glo *.ind *.aux *.gls
+			</code>
+			<p>
+				さて、これで動作に必要な *.sty や、ドキュメント *.pdf を生成することができました。
+				次に、TEXMFLOCAL にこれらを配置します。
+			</p>
+			<dl>
+				<dt><code>TEXMFLOCAL/tex/latex/&lt;packagename&gt;</code></dt>
+				<dd>
+					<p>
+						tex ディレクトリの中には、TeX の動作に必要なものを配置します。
+						具体的には、今回は *.sty ファイルが該当します。
+						Dennou Style は LaTeX で動作するパッケージなので、
+						latex というサブディレクトリを掘って、さらにその中に
+						Dennou 6 というディレクトリを配置し、その中に *.sty 一式を全て入れましょう。
+					</p>
+				</dd>
+				<dt><code>TEXMFLOCAL/doc/latex/&lt;packagename&gt;</code></dt>
+				<dd>
+					<p>
+						doc ディレクトリには、ドキュメント類を格納します。
+						doc ディレクトリに置いてなければ、<code>tecdoc</code>
+						コマンドでドキュメントを表示することができません。
+						今回、ドキュメントに該当するのは、*.pdf, *.tex,
+						README, COPYRIGHT, WHATS_NEW_and_TODO の計 7 つのファイルです。
+						先程と同様に、サブディレクトリを掘って格納します。
+					</p>
+				</dd>
+				<dt><code>TEXMFLOCAL/source/latex/&lt;packagename&gt;</code></dt>
+				<dd>
+					<p>
+						source ディレクトリには、ソースコードを格納します。
+						今回は、*.sty や *.pdf （とその元になる *.tex）を生成する
+						*.doc や *.ins が該当します。
+						Makefile は該当しませんが、入れても特に支障はないので、
+						上 2 つのディレクトリに入れなかったもの全てを格納して大丈夫です。
+						同じようにサブディレクトリを掘って格納しましょう。
+					</p>
+				</dd>
+			</dl>
+		</section>
+	</section>
+	<script src="/jscss/ad.js" type="text/java2019script"></script>
+	<nav class="foot">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="carelesmith9" data-lang="ja" target="_blank">ツイート</a>
+		<a href="/" class="top">トップへ</a>
+	</nav>
+</div>
+</body>
+

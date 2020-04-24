@@ -1,0 +1,15 @@
+2019-07-05 created by ひとみさん
+CC-BY-SA ライセンスで配布を行う
+
+以下の 2 ファイルを LuaLaTeX でタイプセットすればよい
+eptex-slide.tex   -> 発表資料用のスライドを作成
+eptex-handout.tex -> ハンドアウト
+
+eptex.tex         -> 本体
+
+error.tex, sample2.tex, struct.tex
+                  -> eptex.tex に input
+
+sample.tex        -> eptex.tex に input
+                     sample.pdf も include しているので、
+                     必要に応じて platex + dvipdfmx で作成
