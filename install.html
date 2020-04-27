@@ -34,7 +34,9 @@
 			<h1>TeX のインストール</h1>
 			<div class="update">
 				CareleSmithひとみ<br>
-				<time>2020-04-10</time>作成
+				<del><time>2020-04-10</time>作成</del>
+				<del><time>2020-04-26</time>更新</del>
+				<ins><time>2020-04-27</time>更新</ins>
 			</div>
 		</header>
 		<nav class="head">
@@ -121,8 +123,8 @@
 				パスを通します。以下はパスの通しかたの一例です。
 			</p>
 			<code class="block">
-				echo 'export PATH=$PATH:/usr/local/texlive/2019/bin/*/' &gt;&gt; ~/.bashrc<br>
-				source ~/.bashrc
+				$ echo 'export PATH=$PATH:/usr/local/texlive/2019/bin/*/' &gt;&gt; ~/.bashrc<br>
+				$ source ~/.bashrc
 			</code>
 		</section>
 		<section>
@@ -172,6 +174,35 @@
 			</p>
 			<code class="block">
 				% sudo apt install texlive-full
+			</code>
+		</section>
+		<section>
+			<h2>macOS の場合</h2>
+			<p>
+				macOS の場合は、<a href="https://texwiki.texjp.org/?MacTeX" target="_blank">MacTeX</a>
+				を利用して TeX Live をインストールすることができます。詳しくは TeX Wiki を御覧ください。
+				ただし、Ghostscript が MacTeX でインストールしたものと Homebrew でインストールしたものとで衝突し、
+				不具合が起こることがあります。この場合は、Homebrew を再インストールしてください。
+			</p>
+			<p>
+				上述の通り、MacTeX は Homebrew との相性が良くなく、また、
+				インストールしたものがいろいろなディレクトリに配置され、
+				アンインストールが容易でないので、私はあまりおすすめできません。
+				上記の install-tl を用いたインストール方法も macOS で利用できるので、
+				install-tl を用いてインストールすることをおすすめします。
+			</p>
+		</section>
+		<section>
+			<h2>インストール後の確認</h2>
+			<p>
+				インストールが終わったら、TeX がただしくインストールできているか確認しましょう。
+				ターミナルで <code>tex</code> と打って、インストールしたバージョンの TeX
+				が正しく起動できれば成功です。
+			</p>
+			<code style="block">
+				% tex<br>
+				This is TeX, Version 3.14159265 (TeX Live 2020) (preloaded format=tex)<br>
+				**
 			</code>
 		</section>
 	</section>
