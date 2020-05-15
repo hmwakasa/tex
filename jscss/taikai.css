@@ -1,0 +1,415 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: nishiki-teki;
+	src: local(nishiki-teki),
+		url(nishiki-teki.ttf) format("truetype"),
+		url(nishiki-teki.woff2) format("woff2");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: nishiki-teki;
+	src: url(Nishiki-teki-SBmod.ttf) format("truetype"),
+		url(Nishiki-teki-SBmod.woff2) format("woff2");
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: hackgen;
+	src: local(HackGen-Regular),
+		url(HackGen-Regular.ttf) format("truetype"),
+		url(HackGen-Regular.woff2) format("woff2");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: hackgen;
+	src: local(HackGen-Bold),
+		url(HackGen-Bold.ttf) format("truetype"),
+		url(HackGen-Bold.woff2) format("woff2");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: hackgen;
+	src: local(HackGen),
+		url(HackGen-Oblique.ttf) format("truetype"),
+		url(HackGen-Oblique.woff2) format("woff2");
+	font-weight: normal;
+	font-style: oblique;
+}
+
+@font-face {
+	font-family: hackgen;
+	src: local(HackGen),
+		url(HackGen-BoldOblique.ttf) format("truetype"),
+		url(HackGen-BoldOblique.woff2) format("woff2");
+	font-weight: bold;
+	font-style: oblique;
+}
+
+*{
+	text-align: justify;
+	font-family: nishiki-teki, sans-serif;
+	-moz-font-feature-settings:  "hkna","kern","ccmp","onum";
+	-webkit-font-feature-settings: "hkna","kern","ccmp","onum";
+	font-feature-settings: "hkna","kern","ccmp","onum";
+	-webkit-text-size-adjust: 100%;
+}
+
+body{
+	background-color: #FEF4F4;
+	color: #513743;
+}
+
+div.wrapper{
+	padding: 0% 5%;
+	margin: 0% auto;
+	max-width: 45em;
+}
+
+header{
+	color: #F7FCFE;
+	background-color: #A22041;
+	border: outset #A22041;
+	position: relative;
+	margin-bottom: 0px;
+}
+
+.update{
+	text-align: right;
+	font-size: x-small;
+	margin: 0.5ex;
+	text-indent: 0em;
+	position: absolute;
+	right: 1ex;
+	bottom: 1ex;
+}
+
+h1{
+	font-size: xx-large;
+	text-align: center;
+	font-family: nishiki-teki, sans-serif;
+	font-weight: normal;
+}
+
+h1>span{
+	font-size: smaller;
+	font-variant: small-caps;
+	font-family: nishiki-teki, sans-serif;
+}
+
+h2{
+	border-left: 14px solid #698AAB;
+	font-size: large;
+	font-family: nishiki-teki, sans-serif;
+	text-align: left;
+	background-color: #17184B;
+	font-size: x-large;
+	color: #F7FCFE;
+	padding: 1ex 0.5ex;
+}
+
+h3{
+	border-left: 14px double #E2041B;
+	text-align: left;
+	font-family: nishiki-teki, sans-serif;
+	background-color: #BBC8E6;
+	font-size: large;
+	color: #0D0015;
+	padding: 0.5ex 0.5ex;
+}
+
+h4{
+	border-left: 7px solid #F8B500;
+	border-bottom: 2px solid #F8B500;
+	text-align: left;
+	font-family: nishiki-teki, sans-serif;
+	font-size: medium;
+	color: #250D00;
+	padding-left: 0.5ex;
+}
+
+h5{
+	border-bottom: 1px dashed #96514D;
+	text-align: left;
+	font-family: nishiki-teki, sans-serif;
+	font-size: medium;
+	color: #250D00;
+	padding-left: 1em;
+}
+
+nav{
+	border: ridge #E7E7EB;
+	background-color: #F2F2B0;
+	font-size: small;
+	margin: 1ex;
+	padding: 1ex;
+}
+
+nav.head{
+	text-align: left;
+}
+
+nav.foot{
+	text-align: right;
+}
+
+p{
+	text-indent: 1em;
+	margin: 1ex 0;
+	padding: 0;
+}
+
+ul, ol{
+	margin: 0;
+	padding: 0;
+	padding-left: 5%;
+}
+
+em{
+	font-style: normal;
+	text-decoration: underline;
+}
+
+strong{
+	font-style: normal;
+	font-weight: bold;
+	font-family: nishiki-teki, sans-serif;
+	color: #0B0015;
+}
+
+i{
+	font-style: italic
+}
+
+kbd{
+	padding: 0.2ex 0.7ex;
+	margin: 0.2ex 1ex;
+	background: #000b00;
+	border-radius: 0.5ex;
+	border: none;
+	color: #c0c6c9;
+	font-family: hackgen, monospace;
+	word-break: break-all;
+}
+
+code{
+	padding: 0.2ex 0.7ex;
+	margin: 0.2ex 1ex;
+	background: #2f5d50;
+	border-radius: 0.5ex;
+	border: none;
+	color: #f8e58c;
+	font-family: hackgen, monospace;
+	word-break: break-all;
+}
+
+pre{
+	font-family: hackgen, monospace;
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	border: inset #FEF4F4;
+}
+
+pre.code,code.block{
+	display: block;
+	width: 90%;
+	padding: 0.2ex 0.7ex;
+	margin: 0.2ex auto;
+	background: #2f5d50;
+	border-radius: 0.5ex;
+	border: none;
+	color: #f8e58c;
+	font-family: hackgen, monospace;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+code.block{
+	white-space: nowrap;
+}
+
+pre.code *{
+	color: #f8e58c;
+	font-family: hackgen, monospace;
+}
+
+blockquote{
+	margin-left: 5%;
+	margin-right: 0;
+}
+
+h2 *, h3 *, h4 *, h5 *, strong *, b *{
+	font-family: nishiki-teki, sans-serif;
+}
+
+/* dl */
+
+dl{
+	margin: 0;
+	padding: 0;
+	padding-left: 5%;
+}
+
+dt{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	font-family: nishiki-teki, sans-serif;
+}
+
+dd{
+	margin: 0;
+	padding: 0;
+	padding-left: 2.5%;
+}
+
+/* edit */
+
+del{
+	display: none;
+}
+
+ins{
+	text-decoration: none;
+}
+
+/* a */
+
+a:link{
+	color: #A1A46D;
+}
+
+a:visited{
+	color: #726D40;
+} 
+
+.url{
+	word-break: break-all;
+}
+
+/* breadcrumbs */
+nav ul[itemscope]{
+	padding: 0;
+	display: inline;
+}
+
+nav ul[itemscope] li{
+	display: inline;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+nav ul[itemscope] li:after{
+	content: ">";
+	padding: 0;
+	margin: 0;
+}
+
+nav ul[itemscope] li:last-child:after{
+	content: ""
+}
+
+/* table, tablesorter, figure*/
+
+div.bigtable, div.table, div.figure, div.bigfigure{
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	text-align: center;
+	white-space: nowrap;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	border: inset white;
+}
+
+div.figure{
+	max-width: 30em;
+	margin: 0px auto;
+}
+
+div.bigtable{
+	font-size: smaller;
+}
+
+.wrap{
+	white-space: normal;
+	min-width: 5em;
+}
+
+
+table{
+	padding: 0px;
+	margin: 0px;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: left;
+}
+
+table th{
+	font-weight: bold;
+	font-family: nishiki-teki, sans-serif;
+	border: solid thin #302833;
+	background-color: #769164;
+	text-align: center;
+}
+
+table td{
+	border: solid thin #302833;
+	background-color: #D6E9CA;
+	text-align: center;
+}
+
+figure figcaption, table caption{
+	text-align: center;
+	font-size: large;
+	font-family: nishiki-teki, sans-serif;
+}
+
+figure img{
+	width: 100%;
+}
+
+.img_cent{
+	vertical-align: middle;
+}
+
+/* selection */
+
+::selection{
+	background-color: #AA4C8F;
+	color: #FEf4F4;
+}
+
+/* media print */
+
+@media print{
+	body{
+		background-color: white;
+		color:black;
+		max-width: none;
+	}
+	a:link{
+		color: black;
+		text-decoration: none;
+	}
+	div.table, div.bigtable{
+		font-size: x-small;
+		overflow: visible;
+		white-space: normal;
+	}
+	table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+		background-color: dimgray;
+	}
+	td{
+		background-color: transparent;
+	}
+}
