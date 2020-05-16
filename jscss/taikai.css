@@ -193,6 +193,7 @@ kbd{
 	border-radius: 0.5ex;
 	border: none;
 	color: #c0c6c9;
+	font-size: 98%;
 	font-family: hackgen, monospace;
 	word-break: break-all;
 }
@@ -204,6 +205,7 @@ code{
 	border-radius: 0.5ex;
 	border: none;
 	color: #f8e58c;
+	font-size: 98%;
 	font-family: hackgen, monospace;
 	word-break: break-all;
 }
