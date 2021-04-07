@@ -26,7 +26,8 @@
 				人見祥磨<br>
 				<del><time>2020-04-10</time>作成</del>
 				<del><time>2020-04-26</time>更新</del>
-				<ins><time>2020-04-27</time>更新</ins>
+				<del><time>2020-04-27</time>更新</del>
+				<ins><time>2021-04-07</time>更新</ins>
 			</div>
 		</header>
 		<nav class="head">
@@ -40,11 +41,6 @@
 		</nav>
 		<p>
 			ここでは、TeX を自分の使っているパソコンにインストールするお話をします。
-			ちなみに、この記事を書いているのは、2020 年 4 月 10 日です。
-			この日に研究室の後輩の WSL の環境構築をする予定なので、この記事を書いています。
-			なお、2020 年 4 月 10 日は、TeX Live 2020 のリリース日ですが、
-			ここでは TeX Live 2019 をインストールします（理由は後述）。
-			また、インストールする OS は UNIX 系を想定しています。
 		</p>
 		<section>
 			<h2>TeX Live とはなにか</h2>
@@ -54,13 +50,120 @@
 			</p>
 		</section>
 		<section>
-			<h2>TeX Live 2019 をインストールする</h2>
+			<h2>最新の TeX Live を Linux にインストールする</h2>
 			<p>
-				現在、最新の TeX Live は、TeX Live 2020 ですが、
-				ここでは安定版としてリリースされていて、これ以上更新されることのない
+				最新の TeX Live を入手する方法は、
+				<a href="https://texwiki.texjp.org/?Linux" target="_blank">TeX Wiki</a>
+				に詳しくまとめてあります。そちらを参考にしてください。
+			</p>
+			<p>
+				まず、最新のインストラーをダウンロードします。
+			</p>
+			<code class="block">
+				% wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz<br>
+			</code>
+			<p>
+				次に、ダウンロードしたインストラーを解凍し、sudo 権限で実行します。
+			</p>
+			<code class="block">
+				% tar xvf install-tl-unx.tar.gz<br>
+				% cd install-tl*<br>
+				% sudo ./install-tl -no-gui -repository http://mirror.ctan.org/systems/texlive/tlnet/
+			</code>
+			<p>
+				なお、インストーラは Perl を利用しています。
+				Perl がシステムに入っていない場合にはエラーが発生するので、
+				エラーが発生した場合は <code>sudo apt install perl</code> などとして
+				Perl をインストールしてから再び試してみてください。
+			</p>
+			<p>
+				An old installation of TeX Live has been found... などと言われた場合は <code>n</code>
+				で拒否します。Enter command と言われたら <code>I</code> と入力してインストール開始です。
+				ネットワーク経由で必要なファイルがダウンロードされ、インストールが進みます。
+			</p>
+			<p>
+				最後にパスを通してインストール完了です。
+				パスを通すとは、インストールしたコマンドをシェルが見つけることができるようにする作業です。
+				以下はパスの通し方の例です。
+			</p>
+			<p>
+			<code class="block">
+				$ echo 'export PATH=$PATH:/usr/local/texlive/2019/bin/*/' &gt;&gt; ~/.bashrc<br>
+				$ source ~/.bashrc
+			</code>
+				最新の TeX Live をインストールした場合、適宜 TeX Live をアップデートしなければなりません。
+				TeX Live のアップデートなど、TeX Live 全体の運用を管理するコマンドは、
+				<code>tlmgr</code> コマンドです。TeX Live をアップデートするために、
+				定期的に次のコマンドを走らせましょう。<code>update</code> がアップデートをするコマンドで、
+				<code>--self</code> が <code>tlmgr</code> 自身を更新するオプション、
+				<code>--all</code> は更新可能なパッケージを全て更新するオプションです。
+			</p>
+			<code class="block">
+				% sudo tlmgr update --self --all
+			</code>
+			<p>
+				年度が変わる頃に TeX Live は大型アップデートがあります
+				（例: TeX Live 2019 →TeX Live 2020）。
+				大型アップデートは <code>tlmgr</code> では行われないので、
+				大型アップデートを適用するにはインストールの手順を再度行う必要があります。
+			</p>
+		</section>
+		<section>
+			<h2>パッケージ管理ツールを用いたインストール</h2>
+			<p>
+				Linux ディストリビューションに含まれている TeX Live をインストールすることもできます。
+				ただし、この方法でインストールすると、（先程も述べたとおり）仕様変更によるバグが混入したり、
+				TeX Live の更新と Linux ディストリビューションの更新とのタイムラグがあるなどで、
+				思わぬ不具合の原因になるかもしれません。個人的には、この方法は勧めません。
+				ただし、システムのパッケージ管理と一元化できるというメリットもあります。
+			</p>
+			<p>
+				TeX Live は、いくつかのパッケージに別れて収録されていますが、
+				パッケージが足りずにエラーが発生することを避けるために、
+				フルインストールするのが良いでしょう。
+			</p>
+			<code class="block">
+				% sudo apt install texlive-full
+			</code>
+		</section>
+		<section>
+			<h2>Windows の場合</h2>
+			<p>
+				Windows に TeX を導入する場合、
+				<a href="http://w32tex.org/index-ja.html" target="_blank">W32TeX</a>
+				を用いるのが良いかと思います。W32TeX は TeX Live がベースになっているので、
+				TeX Live をインストールするのと大差ありません。
+			</p>
+			<p>
+				<a href="https://texwiki.texjp.org/?W32TeX" target="_blank">TeX Wiki の記事</a>
+				に W32TeX を導入する方法があるので、それを参考にしてください。
+			</p>
+		</section>
+		<section>
+			<h2>macOS の場合</h2>
+			<p>
+				macOS の場合は、<a href="https://texwiki.texjp.org/?MacTeX" target="_blank">MacTeX</a>
+				を利用して TeX Live をインストールすることができます。詳しくは TeX Wiki を御覧ください。
+				ただし、Ghostscript が MacTeX でインストールしたものと Homebrew でインストールしたものとで衝突し、
+				不具合が起こることがあります。この場合は、Homebrew を再インストールしてください。
+			</p>
+			<p>
+				上述の通り、MacTeX は Homebrew との相性が良くなく、また、
+				インストールしたものがいろいろなディレクトリに配置され、
+				アンインストールが容易でないので、私はあまりおすすめできません。
+				上記の install-tl を用いたインストール方法も macOS で利用できるので、
+				install-tl を用いてインストールすることをおすすめします。
+			</p>
+		</section>
+		<section>
+			<h2>TeX Live の古いバージョンをインストールする</h2>
+			<p>
+				古いバージョンの TeX Live をインストールする例として、
 				TeX Live 2019 をインストールします。
-				最新のものを使うと、急な仕様変更によりバグが混入する恐れがあるので、
-				前年度の最終版を使うのが無難です。
+				古いバージョンの TeX Live をインストールする利点は、
+				急な仕様変更によりバグが混入する恐れがないことです。
+				近年（2020 年ごろ）の LaTeX は仕様変更が多いので、
+				この利点は以前より大きいものになっています。
 			</p>
 			<p>
 				なお、インストールの大きな流れ自体は、
@@ -95,90 +198,7 @@
 				% sudo ./install-tl -repository ftp://tug.org/texlive/historic/2019/tlnet-final/
 			</code>
 			<p>
-				インストーラは Perl を利用しています。
-				Perl がシステムに入っていない場合にはエラーが発生するので、
-				エラーが発生した場合は <code>sudo apt install perl</code> などとして
-				Perl をインストールしてから再び試してみてください。
-				もし、インストールに膨大な時間がかかるならば、
-				<code>ftp://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2019/tlnet-final</code>
-				をリポジトリに指定してください。ダウンロードにかかる時間が短くなるはずです。
-			</p>
-			<p>
-				An old installation of TeX Live has been found... などと言われた場合は <code>n</code>
-				で拒否します。Enter command と言われたら <code>I</code> と入力してインストール開始です。
-			</p>
-			<p>
-				インストールが終了したら、シェルが TeX の場所を見つけることができるように、
-				パスを通します。以下はパスの通しかたの一例です。
-			</p>
-			<code class="block">
-				$ echo 'export PATH=$PATH:/usr/local/texlive/2019/bin/*/' &gt;&gt; ~/.bashrc<br>
-				$ source ~/.bashrc
-			</code>
-		</section>
-		<section>
-			<h2>最新の TeX Live をインストールする</h2>
-			<p>
-				最新の TeX Live を入手する方法は、
-				<a href="https://texwiki.texjp.org/?Linux" target="_blank">TeX Wiki</a>
-				に詳しくまとめてあります。そちらを参考にしてください。
-			</p>
-			<p>
-				具体的には、最新のインストラーをダウンロードして、最新のリポジトリを指定します。
-			</p>
-			<code class="block">
-				% wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz<br>
-				% tar xvf install-tl-unx.tar.gz<br>
-				% cd install-tl*<br>
-				% sudo ./install-tl -no-gui -repository http://mirror.ctan.org/systems/texlive/tlnet/
-			</code>
-			<p>
-				最後にパスを通してインストール完了です。
-			</p>
-			<p>
-				最新の TeX Live をインストールした場合、適宜 TeX Live をアップデートしなければなりません。
-				TeX Live のアップデートなど、TeX Live 全体の運用を管理するコマンドは、
-				<code>tlmgr</code> コマンドです。TeX Live をアップデートするために、
-				定期的に次のコマンドを走らせましょう。<code>update</code> がアップデートをするコマンドで、
-				<code>--self</code> が <code>tlmgr</code> 自身を更新するオプション、
-				<code>--all</code> は更新可能なパッケージを全て更新するオプションです。
-			</p>
-			<code class="block">
-				% sudo tlmgr update --self --all
-			</code>
-		</section>
-		<section>
-			<h2>パッケージ管理ツールを用いたインストール</h2>
-			<p>
-				Linux ディストリビューションに含まれている TeX Live をインストールすることもできます。
-				ただし、この方法でインストールすると、（先程も述べたとおり）仕様変更によるバグが混入したり、
-				TeX Live の更新と Linux ディストリビューションの更新とのタイムラグがあるなどで、
-				思わぬ不具合の原因になるかもしれません。個人的には、この方法は勧めません。
-				ただし、システムのパッケージ管理と一元化できるというメリットもあります。
-			</p>
-			<p>
-				TeX Live は、いくつかのパッケージに別れて収録されていますが、
-				パッケージが足りずにエラーが発生することを避けるために、
-				フルインストールするのが良いでしょう。
-			</p>
-			<code class="block">
-				% sudo apt install texlive-full
-			</code>
-		</section>
-		<section>
-			<h2>macOS の場合</h2>
-			<p>
-				macOS の場合は、<a href="https://texwiki.texjp.org/?MacTeX" target="_blank">MacTeX</a>
-				を利用して TeX Live をインストールすることができます。詳しくは TeX Wiki を御覧ください。
-				ただし、Ghostscript が MacTeX でインストールしたものと Homebrew でインストールしたものとで衝突し、
-				不具合が起こることがあります。この場合は、Homebrew を再インストールしてください。
-			</p>
-			<p>
-				上述の通り、MacTeX は Homebrew との相性が良くなく、また、
-				インストールしたものがいろいろなディレクトリに配置され、
-				アンインストールが容易でないので、私はあまりおすすめできません。
-				上記の install-tl を用いたインストール方法も macOS で利用できるので、
-				install-tl を用いてインストールすることをおすすめします。
+				インストールが終了したら、シェルが TeX の場所を見つけることができるようにパスを通します。
 			</p>
 		</section>
 		<section>
