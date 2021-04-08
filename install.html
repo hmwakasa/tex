@@ -27,7 +27,8 @@
 				<del><time>2020-04-10</time>作成</del>
 				<del><time>2020-04-26</time>更新</del>
 				<del><time>2020-04-27</time>更新</del>
-				<ins><time>2021-04-07</time>更新</ins>
+				<del><time>2021-04-07</time>更新</del>
+				<ins><time>2021-04-08</time>更新</ins>
 			</div>
 		</header>
 		<nav class="head">
@@ -84,11 +85,13 @@
 			<p>
 				最後にパスを通してインストール完了です。
 				パスを通すとは、インストールしたコマンドをシェルが見つけることができるようにする作業です。
-				以下はパスの通し方の例です。
+				以下はパスの通し方の例です。パスの通し方は、環境によって異なるので、
+				各自調べてください。
+				<code>20XX</code> の部分は適宜変えてください。
 			</p>
 			<p>
 			<code class="block">
-				$ echo 'export PATH=$PATH:/usr/local/texlive/2019/bin/*/' &gt;&gt; ~/.bashrc<br>
+				$ echo 'export PATH=$PATH:/usr/local/texlive/20XX/bin/*/' &gt;&gt; ~/.bashrc<br>
 				$ source ~/.bashrc
 			</code>
 				最新の TeX Live をインストールした場合、適宜 TeX Live をアップデートしなければなりません。
